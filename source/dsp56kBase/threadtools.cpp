@@ -49,6 +49,7 @@ namespace dsp56k
 		info.dwThreadID = dwThreadID;
 		info.dwFlags = 0;
 
+#ifdef _MSC_VER
 		__try  // NOLINT(clang-diagnostic-language-extension-token)
 		{
 			RaiseException( MS_VC_EXCEPTION, 0, sizeof(info)/sizeof(ULONG_PTR), reinterpret_cast<ULONG_PTR*>(&info) );
@@ -56,6 +57,7 @@ namespace dsp56k
 		__except(EXCEPTION_EXECUTE_HANDLER)
 		{
 		}
+#endif
 	}
 
 	// SetThreadDescription is Win10 1607+. Load it dynamically so we stay compatible with Win7.
